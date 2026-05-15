@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 
 const memories = [
   {
@@ -66,10 +67,11 @@ export const MemoryExperience = ({ onNext }: MemoryExperienceProps) => {
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className="absolute inset-0 p-6 bg-white rounded-xl shadow-2xl preserve-3d"
           >
-            <div className="w-full h-[80%] overflow-hidden rounded-lg mb-6 bg-gray-100">
-              <img 
+            <div className="w-full h-[80%] overflow-hidden rounded-lg mb-6 bg-gray-100 relative">
+              <Image 
                 src={memories[index].image} 
                 alt="Memory" 
+                fill
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
             </div>

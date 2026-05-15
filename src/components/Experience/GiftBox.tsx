@@ -23,7 +23,7 @@ export const GiftBox = ({ onNext }: GiftBoxProps) => {
       zIndex: 1000
     };
 
-    function fire(particleRatio: number, opts: any) {
+    function fire(particleRatio: number, opts: { spread?: number; startVelocity?: number; decay?: number; scalar?: number }) {
       confetti({
         ...defaults,
         ...opts,
@@ -41,6 +41,19 @@ export const GiftBox = ({ onNext }: GiftBoxProps) => {
       onNext();
     }, 4000);
   };
+
+  const [particles, setParticles] = useState<{ x: number; y: number; delay: number }[]>([]);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setParticles([...Array(50)].map(() => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 0.5
+      })));
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <motion.div
@@ -103,7 +116,7 @@ export const GiftBox = ({ onNext }: GiftBoxProps) => {
               transition={{ duration: 2, repeat: Infinity }}
               className="text-5xl md:text-7xl font-serif mb-6"
             >
-              Wait... There's More!
+              Wait... There&apos;s More!
             </motion.h2>
             <p className="text-xl md:text-2xl text-white/60 font-light">The magic is just beginning...</p>
           </motion.div>
@@ -113,17 +126,17 @@ export const GiftBox = ({ onNext }: GiftBoxProps) => {
       {/* Background glowing particles during unboxing */}
       {isOpen && (
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(50)].map((_, i) => (
+          {particles.map((particle, i) => (
             <motion.div
               key={i}
               initial={{ x: "50%", y: "50%", opacity: 1 }}
               animate={{ 
-                x: `${Math.random() * 100}%`, 
-                y: `${Math.random() * 100}%`,
+                x: `${particle.x}%`, 
+                y: `${particle.y}%`,
                 opacity: 0,
                 scale: 0
               }}
-              transition={{ duration: 2, delay: Math.random() * 0.5 }}
+              transition={{ duration: 2, delay: particle.delay }}
               className="absolute w-2 h-2 bg-gold rounded-full blur-sm"
             />
           ))}

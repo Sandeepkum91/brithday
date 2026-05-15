@@ -5,6 +5,20 @@ import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
 export const FinalEnding = () => {
+  const [sparkles, setSparkles] = React.useState<{ x: number; y: number; duration: number; delay: number }[]>([]);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSparkles([...Array(30)].map(() => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        duration: 5 + Math.random() * 5,
+        delay: Math.random() * 5
+      })));
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -51,19 +65,19 @@ export const FinalEnding = () => {
 
       {/* Final background magic */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(30)].map((_, i) => (
+        {sparkles.map((sparkle, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ 
               opacity: [0, 0.3, 0], 
               scale: [0, 1.5, 0],
-              x: (Math.random() * 100) + "%",
-              y: (Math.random() * 100) + "%"
+              x: sparkle.x + "%",
+              y: sparkle.y + "%"
             }}
             transition={{
-              duration: 5 + Math.random() * 5,
-              delay: Math.random() * 5,
+              duration: sparkle.duration,
+              delay: sparkle.delay,
               repeat: Infinity,
               ease: "easeInOut"
             }}

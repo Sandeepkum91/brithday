@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 
@@ -17,7 +17,7 @@ export const NameReveal = ({ onNext, name }: NameRevealProps) => {
 
     const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
-    const interval: any = setInterval(() => {
+    const interval: ReturnType<typeof setInterval> = setInterval(() => {
       const timeLeft = animationEnd - Date.now();
 
       if (timeLeft <= 0) {
@@ -38,6 +38,20 @@ export const NameReveal = ({ onNext, name }: NameRevealProps) => {
     }, 250);
 
     return () => clearInterval(interval);
+  }, []);
+
+  const [balloons, setBalloons] = useState<{ x: number; rotate: number; duration: number; hue: number }[]>([]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setBalloons([...Array(15)].map(() => ({
+        x: Math.random() * 100,
+        rotate: Math.random() * 20 - 10,
+        duration: 8 + Math.random() * 10,
+        hue: Math.random() * 360
+      })));
+    }, 0);
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
@@ -84,24 +98,24 @@ export const NameReveal = ({ onNext, name }: NameRevealProps) => {
 
       {/* Floating Balloons Simulation */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {balloons.map((balloon, i) => (
           <motion.div
             key={i}
-            initial={{ y: "110%", x: `${Math.random() * 100}%`, opacity: 0 }}
+            initial={{ y: "110%", x: `${balloon.x}%`, opacity: 0 }}
             animate={{ 
               y: "-10%", 
               opacity: [0, 1, 1, 0],
-              rotate: [0, Math.random() * 20 - 10, 0]
+              rotate: [0, balloon.rotate, 0]
             }}
             transition={{
-              duration: 8 + Math.random() * 10,
+              duration: balloon.duration,
               delay: i * 0.5,
               repeat: Infinity,
               ease: "linear"
             }}
             className="absolute w-12 h-16 rounded-[50%_50%_50%_50%/_40%_40%_60%_60%] bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-[2px]"
             style={{
-              filter: `hue-rotate(${Math.random() * 360}deg)`,
+              filter: `hue-rotate(${balloon.hue}deg)`,
             }}
           />
         ))}

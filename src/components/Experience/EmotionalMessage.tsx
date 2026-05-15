@@ -10,6 +10,20 @@ interface EmotionalMessageProps {
 }
 
 export const EmotionalMessage = ({ onNext, message }: EmotionalMessageProps) => {
+  const [hearts, setHearts] = React.useState<{ x: number; xOffset: number; duration: number; size: number }[]>([]);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setHearts([...Array(10)].map(() => ({
+        x: Math.random() * 100,
+        xOffset: Math.random() * 100 - 50,
+        duration: 5 + Math.random() * 5,
+        size: Math.random() * 20 + 10
+      })));
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, []);
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -19,12 +33,12 @@ export const EmotionalMessage = ({ onNext, message }: EmotionalMessageProps) => 
         delayChildren: 0.5,
       },
     },
-  };
+  } as const;
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
+  } as const;
 
   return (
     <motion.div
@@ -78,24 +92,24 @@ export const EmotionalMessage = ({ onNext, message }: EmotionalMessageProps) => 
 
       {/* Floating hearts */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(10)].map((_, i) => (
+        {hearts.map((heart, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 100, x: Math.random() * 100 + "%" }}
+            initial={{ opacity: 0, y: 100, x: heart.x + "%" }}
             animate={{ 
               opacity: [0, 1, 0], 
               y: -100,
-              x: (Math.random() * 100 - 50) + "%" 
+              x: heart.xOffset + "%" 
             }}
             transition={{
-              duration: 5 + Math.random() * 5,
+              duration: heart.duration,
               delay: i * 2,
               repeat: Infinity,
               ease: "easeInOut"
             }}
             className="absolute"
           >
-            <Heart size={Math.random() * 20 + 10} className="text-white/10" />
+            <Heart size={heart.size} className="text-white/10" />
           </motion.div>
         ))}
       </div>
