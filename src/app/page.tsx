@@ -1,65 +1,87 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { IntroMystery } from "@/components/Experience/IntroMystery";
+import { NameReveal } from "@/components/Experience/NameReveal";
+import { EmotionalMessage } from "@/components/Experience/EmotionalMessage";
+import { MemoryExperience } from "@/components/Experience/MemoryExperience";
+import { GiftBox } from "@/components/Experience/GiftBox";
+import { CakeInteraction } from "@/components/Experience/CakeInteraction";
+import { FinalEnding } from "@/components/Experience/FinalEnding";
+import { CustomCursor } from "@/components/UI/CustomCursor";
+import { Particles } from "@/components/UI/Particles";
+import { MusicToggle } from "@/components/UI/MusicToggle";
+
+export default function BirthdaySurprise() {
+  const [step, setStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // You can customize these
+  const birthdayName = "Priya";
+  const emotionalMessage = "You are one of the most special people in my life. Every moment shared with you is a gift that I cherish deeply. Happy Birthday, and here's to many more magical years together!";
+
+  useEffect(() => {
+    // Simulate loading premium assets
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const nextStep = () => setStep((prev) => prev + 1);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-screen bg-[#050505] text-white selection:bg-white/20">
+      <CustomCursor />
+      <Particles />
+      <MusicToggle />
+
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <motion.div
+            key="loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 1 } }}
+            className="fixed inset-0 z-[2000] bg-black flex flex-col items-center justify-center"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <motion.div
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 1, 0.3]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-white/20 tracking-[1em] uppercase text-xs mb-8"
+            >
+              Preparing the Magic
+            </motion.div>
+            <div className="w-48 h-[1px] bg-white/10 relative overflow-hidden">
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+              />
+            </div>
+          </motion.div>
+        ) : (
+          <div className="relative z-10">
+            {step === 0 && <IntroMystery key="step0" onNext={nextStep} />}
+            {step === 1 && <NameReveal key="step1" name={birthdayName} onNext={nextStep} />}
+            {step === 2 && <EmotionalMessage key="step2" message={emotionalMessage} onNext={nextStep} />}
+            {step === 3 && <MemoryExperience key="step3" onNext={nextStep} />}
+            {step === 4 && <GiftBox key="step4" onNext={nextStep} />}
+            {step === 5 && <CakeInteraction key="step5" onNext={nextStep} />}
+            {step === 6 && <FinalEnding key="step6" />}
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Global Background Glow */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full" />
+      </div>
+    </main>
   );
 }
