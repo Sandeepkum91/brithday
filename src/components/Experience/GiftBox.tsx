@@ -7,14 +7,16 @@ import { Gift } from "lucide-react";
 
 interface GiftBoxProps {
   onNext: () => void;
+  onOpen?: () => void;
 }
 
-export const GiftBox = ({ onNext }: GiftBoxProps) => {
+export const GiftBox = ({ onNext, onOpen }: GiftBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
     if (isOpen) return;
     setIsOpen(true);
+    onOpen?.();
     
     // Fireworks effect
     const count = 200;
@@ -114,11 +116,11 @@ export const GiftBox = ({ onNext }: GiftBoxProps) => {
                 textShadow: ["0 0 0px #fff", "0 0 20px #fff", "0 0 0px #fff"]
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="text-5xl md:text-7xl font-serif mb-6"
+              className="text-3xl md:text-5xl lg:text-7xl font-serif mb-6 px-4"
             >
               Wait... There&apos;s More!
             </motion.h2>
-            <p className="text-xl md:text-2xl text-white/60 font-light">The magic is just beginning...</p>
+            <p className="text-lg md:text-xl lg:text-2xl text-white/60 font-light px-4">The magic is just beginning...</p>
           </motion.div>
         )}
       </AnimatePresence>

@@ -39,12 +39,12 @@ export const FinalEnding = () => {
           <Heart className="w-20 h-20 text-red-500 fill-red-500/20 drop-shadow-[0_0_20px_rgba(239,68,68,0.5)]" />
         </motion.div>
 
-        <h2 className="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-6 leading-tight px-4">
           Thank you for being <br />
           <span className="text-gold gold-glow">part of my life ❤️</span>
         </h2>
         
-        <p className="text-white/60 text-lg md:text-xl font-light tracking-widest uppercase max-w-xl mx-auto leading-relaxed">
+        <p className="text-white/60 text-base md:text-lg lg:text-xl font-light tracking-widest uppercase max-w-xl mx-auto leading-relaxed px-6">
           I hope this small surprise brought a big smile to your beautiful face.
         </p>
 

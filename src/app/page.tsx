@@ -16,6 +16,7 @@ import { MusicToggle } from "@/components/UI/MusicToggle";
 export default function BirthdaySurprise() {
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCelebratoryMusic, setIsCelebratoryMusic] = useState(false);
 
   // You can customize these
   const birthdayName = "Priya";
@@ -35,7 +36,7 @@ export default function BirthdaySurprise() {
     <main className="relative min-h-screen bg-[#050505] text-white selection:bg-white/20">
       <CustomCursor />
       <Particles />
-      <MusicToggle />
+      <MusicToggle isCelebration={isCelebratoryMusic} />
 
       <AnimatePresence mode="wait">
         {isLoading ? (
@@ -70,7 +71,7 @@ export default function BirthdaySurprise() {
             {step === 1 && <NameReveal key="step1" name={birthdayName} onNext={nextStep} />}
             {step === 2 && <EmotionalMessage key="step2" message={emotionalMessage} onNext={nextStep} />}
             {step === 3 && <MemoryExperience key="step3" onNext={nextStep} />}
-            {step === 4 && <GiftBox key="step4" onNext={nextStep} />}
+            {step === 4 && <GiftBox key="step4" onNext={nextStep} onOpen={() => setIsCelebratoryMusic(true)} />}
             {step === 5 && <CakeInteraction key="step5" onNext={nextStep} />}
             {step === 6 && <FinalEnding key="step6" />}
           </div>

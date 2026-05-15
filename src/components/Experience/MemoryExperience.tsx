@@ -57,7 +57,7 @@ export const MemoryExperience = ({ onNext }: MemoryExperienceProps) => {
         <h2 className="text-3xl md:text-5xl font-serif">Some Beautiful Memories</h2>
       </motion.div>
 
-      <div className="relative w-full max-w-[500px] h-[600px] flex items-center justify-center">
+      <div className="relative w-full max-w-[400px] md:max-w-[500px] aspect-[4/5] md:h-[600px] flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -65,9 +65,9 @@ export const MemoryExperience = ({ onNext }: MemoryExperienceProps) => {
             animate={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
             exit={{ opacity: 0, scale: 1.2, rotate: 10, x: -100 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="absolute inset-0 p-6 bg-white rounded-xl shadow-2xl preserve-3d"
+            className="absolute inset-0 p-4 md:p-6 bg-white rounded-xl shadow-2xl preserve-3d"
           >
-            <div className="w-full h-[80%] overflow-hidden rounded-lg mb-6 bg-gray-100 relative">
+            <div className="w-full h-[75%] md:h-[80%] overflow-hidden rounded-lg mb-4 md:mb-6 bg-gray-100 relative">
               <Image 
                 src={memories[index].image} 
                 alt="Memory" 

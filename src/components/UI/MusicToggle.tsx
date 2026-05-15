@@ -4,16 +4,34 @@ import React, { useState, useRef, useEffect } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const MusicToggle = () => {
+interface MusicToggleProps {
+  isCelebration?: boolean;
+}
+
+export const MusicToggle = ({ isCelebration }: MusicToggleProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    // Create audio element
-    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3"); // Soft cinematic piano
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.5;
+  const softTrack = "https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3";
+  const celebratoryTrack = "https://cdn.pixabay.com/audio/2024/02/09/audio_27732a3f01.mp3"; // Upbeat celebration
 
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(isCelebration ? celebratoryTrack : softTrack);
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.5;
+    } else {
+      // Transition track
+      const wasPlaying = isPlaying;
+      audioRef.current.pause();
+      audioRef.current.src = isCelebration ? celebratoryTrack : softTrack;
+      if (wasPlaying) {
+        audioRef.current.play().catch((e) => console.log("Audio play failed:", e));
+      }
+    }
+  }, [isCelebration]);
+
+  useEffect(() => {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();

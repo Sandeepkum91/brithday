@@ -70,7 +70,7 @@ export const NameReveal = ({ onNext, name }: NameRevealProps) => {
         <motion.h2
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="text-6xl md:text-8xl font-serif mb-6 text-glow"
+          className="text-4xl md:text-6xl lg:text-8xl font-serif mb-6 text-glow"
         >
           Happy Birthday
         </motion.h2>
@@ -78,7 +78,7 @@ export const NameReveal = ({ onNext, name }: NameRevealProps) => {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
-          className="text-7xl md:text-9xl font-handwriting text-gold gold-glow mb-12"
+          className="text-5xl md:text-7xl lg:text-9xl font-handwriting text-gold gold-glow mb-12 px-4 break-words"
         >
           {name}
         </motion.h1>
@@ -90,7 +90,7 @@ export const NameReveal = ({ onNext, name }: NameRevealProps) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onNext}
-          className="glass-morphism px-12 py-5 rounded-full text-xl font-light tracking-[0.2em] uppercase transition-all duration-500 hover:bg-white/10"
+          className="glass-morphism px-8 py-4 md:px-12 md:py-5 rounded-full text-lg md:text-xl font-light tracking-[0.2em] uppercase transition-all duration-500 hover:bg-white/10"
         >
           Open Your Surprise
         </motion.button>

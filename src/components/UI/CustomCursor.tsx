@@ -13,6 +13,11 @@ export const CustomCursor = () => {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    // Disable custom cursor on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
