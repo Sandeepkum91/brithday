@@ -16,20 +16,22 @@ export const MusicToggle = ({ isCelebration }: MusicToggleProps) => {
   const celebratoryTrack = "https://cdn.pixabay.com/audio/2024/02/09/audio_27732a3f01.mp3"; // Upbeat celebration
 
   useEffect(() => {
+    const targetSrc = isCelebration ? celebratoryTrack : softTrack;
+    
     if (!audioRef.current) {
-      audioRef.current = new Audio(isCelebration ? celebratoryTrack : softTrack);
+      audioRef.current = new Audio(targetSrc);
       audioRef.current.loop = true;
       audioRef.current.volume = 0.5;
-    } else {
-      // Transition track
+    } else if (audioRef.current.src !== new URL(targetSrc, window.location.href).href) {
+      // Only transition if the track actually changed
       const wasPlaying = isPlaying;
       audioRef.current.pause();
-      audioRef.current.src = isCelebration ? celebratoryTrack : softTrack;
+      audioRef.current.src = targetSrc;
       if (wasPlaying) {
         audioRef.current.play().catch((e) => console.log("Audio play failed:", e));
       }
     }
-  }, [isCelebration]);
+  }, [isCelebration, isPlaying, celebratoryTrack, softTrack]);
 
   useEffect(() => {
     return () => {
