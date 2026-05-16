@@ -45,7 +45,7 @@ export const FinalEnding = () => {
         </h2>
         
         <p className="text-white/60 text-base md:text-lg lg:text-xl font-light tracking-widest uppercase max-w-xl mx-auto leading-relaxed px-6">
-          I hope this small surprise brought a big smile to your beautiful face. Cheers to our unbreakable friendship and many more years of joy together!
+          I hope this small surprise brought a big smile to your beautiful face. You are truly one of a kind, and I am so lucky to have you.
         </p>
 
         <motion.div

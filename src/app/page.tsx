@@ -18,7 +18,7 @@ export default function BirthdaySurprise() {
 
   // You can customize these
   const birthdayName = "Yadav Ji";
-  const emotionalMessage = "To my best friend, Yadav Ji... They say a true friend is the greatest of all blessings, and having you in my life proves it every single day. Thank you for the endless laughs and for always being there. Happy Birthday to the most amazing friend!";
+  const emotionalMessage = "To my most special someone, Yadav Ji... You are much more than words can ever describe. Having you in my life is the greatest gift I could ever ask for. Thank you for the endless joy, the shared dreams, and for being the most beautiful part of my world. Happy Birthday!";
 
   useEffect(() => {
     // Simulate loading premium assets
