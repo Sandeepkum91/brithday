@@ -6,32 +6,44 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface MusicToggleProps {
   isCelebration?: boolean;
+  isBirthday?: boolean;
 }
 
-export const MusicToggle = ({ isCelebration }: MusicToggleProps) => {
+export const MusicToggle = ({ isCelebration, isBirthday }: MusicToggleProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const softTrack = "https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3";
-  const celebratoryTrack = "https://cdn.pixabay.com/audio/2024/02/09/audio_27732a3f01.mp3"; // Upbeat celebration
+  const celebratoryTrack = "https://cdn.pixabay.com/audio/2024/02/09/audio_27732a3f01.mp3"; 
+  const birthdayTrack = "https://cdn.pixabay.com/audio/2021/11/24/audio_8346e96a8e.mp3"; // Happy Birthday Song
 
   useEffect(() => {
-    const targetSrc = isCelebration ? celebratoryTrack : softTrack;
+    let targetSrc = softTrack;
+    if (isBirthday) {
+      targetSrc = birthdayTrack;
+    } else if (isCelebration) {
+      targetSrc = celebratoryTrack;
+    }
     
     if (!audioRef.current) {
-      audioRef.current = new Audio(targetSrc);
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.5;
+      const audio = new Audio(targetSrc);
+      audio.loop = true;
+      audio.volume = 0.5;
+      
+      // Sync state with audio events to avoid cascading renders
+      audio.onplay = () => setIsPlaying(true);
+      audio.onpause = () => setIsPlaying(false);
+      
+      audioRef.current = audio;
     } else if (audioRef.current.src !== new URL(targetSrc, window.location.href).href) {
-      // Only transition if the track actually changed
-      const wasPlaying = isPlaying;
+      const wasPlaying = !audioRef.current.paused || isBirthday;
       audioRef.current.pause();
       audioRef.current.src = targetSrc;
       if (wasPlaying) {
         audioRef.current.play().catch((e) => console.log("Audio play failed:", e));
       }
     }
-  }, [isCelebration, isPlaying, celebratoryTrack, softTrack]);
+  }, [isCelebration, isBirthday, celebratoryTrack, softTrack, birthdayTrack]);
 
   useEffect(() => {
     return () => {
@@ -45,12 +57,11 @@ export const MusicToggle = ({ isCelebration }: MusicToggleProps) => {
   const toggleMusic = () => {
     if (!audioRef.current) return;
 
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
+    if (audioRef.current.paused) {
       audioRef.current.play().catch((e) => console.log("Audio play failed:", e));
+    } else {
+      audioRef.current.pause();
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (

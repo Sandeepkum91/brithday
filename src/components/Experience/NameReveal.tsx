@@ -78,10 +78,18 @@ export const NameReveal = ({ onNext, name }: NameRevealProps) => {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
-          className="text-5xl md:text-7xl lg:text-9xl font-handwriting text-gold gold-glow mb-12 px-4 break-words"
+          className="text-5xl md:text-7xl lg:text-9xl font-handwriting text-gold gold-glow mb-4 px-4 break-words"
         >
           {name}
         </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ delay: 1.5 }}
+          className="text-lg md:text-2xl font-light tracking-[0.3em] uppercase mb-12"
+        >
+          It&apos;s your special day!
+        </motion.p>
 
         <motion.button
           initial={{ opacity: 0 }}

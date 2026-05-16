@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
@@ -10,9 +10,9 @@ interface EmotionalMessageProps {
 }
 
 export const EmotionalMessage = ({ onNext, message }: EmotionalMessageProps) => {
-  const [hearts, setHearts] = React.useState<{ x: number; xOffset: number; duration: number; size: number }[]>([]);
+  const [hearts, setHearts] = useState<{ x: number; xOffset: number; duration: number; size: number }[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timeout = setTimeout(() => {
       setHearts([...Array(10)].map(() => ({
         x: Math.random() * 100,

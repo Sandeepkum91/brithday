@@ -7,16 +7,14 @@ import { Gift } from "lucide-react";
 
 interface GiftBoxProps {
   onNext: () => void;
-  onOpen?: () => void;
 }
 
-export const GiftBox = ({ onNext, onOpen }: GiftBoxProps) => {
+export const GiftBox = ({ onNext }: GiftBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
     if (isOpen) return;
     setIsOpen(true);
-    onOpen?.();
     
     // Fireworks effect
     const count = 200;

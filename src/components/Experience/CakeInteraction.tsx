@@ -38,8 +38,8 @@ export const CakeInteraction = ({ onNext }: CakeInteractionProps) => {
         animate={{ y: 0, opacity: 1 }}
         className="mb-16 text-center"
       >
-        <h2 className="text-4xl md:text-6xl font-serif mb-4">Make a Wish</h2>
-        <p className="text-white/40 tracking-widest uppercase text-sm">Tap the candle to blow it out</p>
+        <h2 className="text-4xl md:text-6xl font-serif mb-4">Happy Birthday, <span className="text-gold">Yadav Ji!</span></h2>
+        <p className="text-white/40 tracking-widest uppercase text-sm">Close your eyes, make a wish, and blow the candle...</p>
       </motion.div>
 
       <div className="relative cursor-pointer" onClick={handleBlow}>

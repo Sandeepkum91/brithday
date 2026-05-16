@@ -37,10 +37,10 @@ export const IntroMystery = ({ onNext }: IntroMysteryProps) => {
           transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
           className="block text-white/90"
         >
-          Hey...
+          Wait a second...
         </motion.span>
         <span className="text-white/60 text-2xl md:text-3xl mt-4 block">
-          someone has something special for you ❤️
+          someone has a special surprise for Yadav Ji ❤️
         </span>
       </motion.h1>
 

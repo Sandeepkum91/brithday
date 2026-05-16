@@ -9,19 +9,19 @@ const memories = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1000&auto=format&fit=crop",
-    caption: "The day we first met and laughed until our stomachs hurt...",
+    caption: "The laughs we shared that became our best memories...",
     color: "#ff9a9e"
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1000&auto=format&fit=crop",
-    caption: "That sunset that felt like it would never end...",
+    caption: "A friend like you is a rare gem I'll always treasure.",
     color: "#fad0c4"
   },
   {
     id: 3,
     image: "https://images.unsplash.com/photo-1530103043960-ef38714abb15?q=80&w=1000&auto=format&fit=crop",
-    caption: "Every small moment with you is a big treasure for me.",
+    caption: "To many more years of our beautiful friendship, Yadav Ji!",
     color: "#a1c4fd"
   }
 ];

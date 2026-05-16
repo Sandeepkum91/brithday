@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IntroMystery } from "@/components/Experience/IntroMystery";
 import { NameReveal } from "@/components/Experience/NameReveal";
@@ -11,16 +11,14 @@ import { CakeInteraction } from "@/components/Experience/CakeInteraction";
 import { FinalEnding } from "@/components/Experience/FinalEnding";
 import { CustomCursor } from "@/components/UI/CustomCursor";
 import { Particles } from "@/components/UI/Particles";
-import { MusicToggle } from "@/components/UI/MusicToggle";
 
 export default function BirthdaySurprise() {
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCelebratoryMusic, setIsCelebratoryMusic] = useState(false);
 
   // You can customize these
-  const birthdayName = "Priya";
-  const emotionalMessage = "You are one of the most special people in my life. Every moment shared with you is a gift that I cherish deeply. Happy Birthday, and here's to many more magical years together!";
+  const birthdayName = "Yadav Ji";
+  const emotionalMessage = "To my best friend, Yadav Ji... They say a true friend is the greatest of all blessings, and having you in my life proves it every single day. Thank you for the endless laughs and for always being there. Happy Birthday to the most amazing friend!";
 
   useEffect(() => {
     // Simulate loading premium assets
@@ -36,7 +34,6 @@ export default function BirthdaySurprise() {
     <main className="relative min-h-screen bg-[#050505] text-white selection:bg-white/20">
       <CustomCursor />
       <Particles />
-      <MusicToggle isCelebration={isCelebratoryMusic} />
 
       <AnimatePresence mode="wait">
         {isLoading ? (
@@ -54,7 +51,7 @@ export default function BirthdaySurprise() {
               transition={{ duration: 2, repeat: Infinity }}
               className="text-white/20 tracking-[1em] uppercase text-xs mb-8"
             >
-              Preparing the Magic
+              Creating Magic for Yadav Ji
             </motion.div>
             <div className="w-48 h-[1px] bg-white/10 relative overflow-hidden">
               <motion.div
@@ -71,7 +68,7 @@ export default function BirthdaySurprise() {
             {step === 1 && <NameReveal key="step1" name={birthdayName} onNext={nextStep} />}
             {step === 2 && <EmotionalMessage key="step2" message={emotionalMessage} onNext={nextStep} />}
             {step === 3 && <MemoryExperience key="step3" onNext={nextStep} />}
-            {step === 4 && <GiftBox key="step4" onNext={nextStep} onOpen={() => setIsCelebratoryMusic(true)} />}
+            {step === 4 && <GiftBox key="step4" onNext={nextStep} />}
             {step === 5 && <CakeInteraction key="step5" onNext={nextStep} />}
             {step === 6 && <FinalEnding key="step6" />}
           </div>
