@@ -41,11 +41,11 @@ export const FinalEnding = () => {
 
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-6 leading-tight px-4">
           Happy Birthday, <br />
-          <span className="text-gold gold-glow">Yadav Ji! ❤️</span>
+          <span className="text-gold gold-glow">Dolly! ❤️</span>
         </h2>
         
         <p className="text-white/60 text-base md:text-lg lg:text-xl font-light tracking-widest uppercase max-w-xl mx-auto leading-relaxed px-6">
-          I hope this small surprise brought a big smile to your beautiful face. You are truly one of a kind, and I am so lucky to have you.
+          I hope this small surprise brought a big smile to your face. You are truly one of a kind, and I am so lucky to have you as my friend.
         </p>
 
         <motion.div

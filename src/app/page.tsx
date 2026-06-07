@@ -17,8 +17,8 @@ export default function BirthdaySurprise() {
   const [isLoading, setIsLoading] = useState(true);
 
   // You can customize these
-  const birthdayName = "Yadav Ji";
-  const emotionalMessage = "To my most special someone, Yadav Ji... You are much more than words can ever describe. Having you in my life is the greatest gift I could ever ask for. Thank you for the endless joy, the shared dreams, and for being the most beautiful part of my world. Happy Birthday!";
+  const birthdayName = "Dolly";
+  const emotionalMessage = "To my amazing friend, Dolly... You are much more than words can ever describe. Having you in my life is the greatest gift I could ever ask for. Thank you for the endless laughter, the wonderful memories, and for always being such an incredible friend. Happy Birthday!";
 
   useEffect(() => {
     // Simulate loading premium assets
@@ -51,7 +51,7 @@ export default function BirthdaySurprise() {
               transition={{ duration: 2, repeat: Infinity }}
               className="text-white/20 tracking-[1em] uppercase text-xs mb-8"
             >
-              Creating Magic for Yadav Ji
+              Creating Magic for Dolly
             </motion.div>
             <div className="w-48 h-[1px] bg-white/10 relative overflow-hidden">
               <motion.div

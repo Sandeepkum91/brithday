@@ -9,19 +9,19 @@ const memories = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1000&auto=format&fit=crop",
-    caption: "Every moment with you is a memory I'll keep forever...",
+    caption: "Every moment with you is a memory I'll cherish forever...",
     color: "#ff9a9e"
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1000&auto=format&fit=crop",
-    caption: "You are a rare gem, the most precious part of my life.",
+    caption: "You are a rare gem, the most wonderful friend in my life.",
     color: "#fad0c4"
   },
   {
     id: 3,
     image: "https://images.unsplash.com/photo-1530103043960-ef38714abb15?q=80&w=1000&auto=format&fit=crop",
-    caption: "To many more years of magic together, Yadav Ji!",
+    caption: "To many more years of magic and friendship together, Dolly!",
     color: "#a1c4fd"
   }
 ];

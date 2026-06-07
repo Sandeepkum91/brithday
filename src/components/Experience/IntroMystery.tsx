@@ -40,7 +40,7 @@ export const IntroMystery = ({ onNext }: IntroMysteryProps) => {
           Wait a second...
         </motion.span>
         <span className="text-white/60 text-2xl md:text-3xl mt-4 block">
-          someone has a special surprise for Yadav Ji ❤️
+          someone has a special surprise for Dolly ❤️
         </span>
       </motion.h1>
 
